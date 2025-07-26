@@ -1,6 +1,6 @@
 import React from 'react'
 
-const FeedbackPage = () => {
+const FeedbackPage = ({setCurrentPage}) => {
   return (
     <div className="z-10">
       <div className="max-w-6xl mx-auto">
@@ -29,6 +29,10 @@ const FeedbackPage = () => {
             <p className="text-lg font-semibold text-retrofit-dark">
               Thank you for supporting this academic endeavor.
             </p>
+            <div className={`flex justify-between items-center mt-4 }`}>
+              <button onClick={()=>setCurrentPage("visualize")} className='bg-white/75 hover:bg-white px-8 py-1 rounded-full border'>Back</button>
+              <button onClick={()=>setCurrentPage("about")}  className ='bg-white/75 hover:bg-white px-8 py-1 rounded-full border'>Next</button>
+            </div>
           </div>
         </div>
         </div>

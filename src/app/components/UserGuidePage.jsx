@@ -21,22 +21,22 @@ const UserGuidePage = ({ onBack, setCurrentPage,currentPage }) => {
         </div>
 
         {/* Navigation Tabs */}
-        <NavigationTab onBack={onBack} setCurrentPage={setCurrentPage}/>
+        <NavigationTab onBack={onBack} setCurrentPage={setCurrentPage} currentPage={currentPage}/>
         
         {/* User Guide Content */}
-        {currentPage==="guide" && (<UserGuideContent/>)}
+        {currentPage==="guide" && (<UserGuideContent setCurrentPage={setCurrentPage}/>)}
 
         {/* Retro Fit Form Page  */}
-        {currentPage==="retrofit" && (<RetroFitFormPage/>)}
+        {currentPage==="retrofit" && (<RetroFitFormPage setCurrentPage={setCurrentPage}/>)}
 
         {/* Visualize Page  */}
-        {currentPage==="visualize" && (<VisualizePage/>)}
+        {currentPage==="visualize" && (<VisualizePage setCurrentPage={setCurrentPage}/>)}
 
         {/* Feedback Page  */}
-        {currentPage==="feedback" && (<FeedbackPage/>)}
+        {currentPage==="feedback" && (<FeedbackPage setCurrentPage={setCurrentPage}/>)}
 
         {/* About Page  */}
-        {currentPage==="about" && (<About/>)}
+        {currentPage==="about" && (<About setCurrentPage={setCurrentPage}/>)}
       </div>
     </>
   );

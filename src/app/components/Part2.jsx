@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../UI/select";
 
-const Part2 = () => {
+const Part2 = ({setCurrentPage,setPart}) => {
   const [windows, setWindows] = useState("");
   const [roof, setRoof] = useState("");
   const [walls, setWalls] = useState("");
@@ -10,7 +10,29 @@ const Part2 = () => {
   const [ww, setWW] = useState("");
   const [wwr, setWWR] = useState("");
 
+  const [errors, setErrors] = useState({});
 
+  const handleNext = () => {
+    const newErrors = {};
+    if (!windows) newErrors.windows = true;
+    if (!roof) newErrors.roof = true;
+    if (!walls) newErrors.walls = true;
+    if (!wr) newErrors.wr = true;
+    if (!rw) newErrors.rw = true;
+    if (!ww) newErrors.ww = true;
+    if (!wwr) newErrors.wwr = true;
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length === 0) {
+        setCurrentPage("feedback");
+      }
+    };
+
+    const selectBorder = (field) =>
+      `rounded-full font-medium px-6 bg-white/90 border w-full justify-center text-center ${
+        errors[field] ? "border-red-500" : ""
+    }`;
 
   return (
    <div className="relative z-10">
@@ -24,7 +46,7 @@ const Part2 = () => {
             </div>
             <div className="flex-1">
               <Select value={windows} onValueChange={setWindows}>
-                <SelectTrigger className="rounded-full font-medium px-6 bg-white/90 border w-full justify-center text-center">
+                <SelectTrigger className={selectBorder("windows")}>
                   <SelectValue placeholder="-- Number of windows --" />
                 </SelectTrigger>
                 <SelectContent className="bg-white rounded-2xl border z-50">
@@ -45,7 +67,7 @@ const Part2 = () => {
               <Select value={roof} onValueChange={(value) => {
                     setRoof(value);
                 }}>
-                <SelectTrigger className="rounded-full font-medium px-6 bg-white/90 border w-full justify-center text-center">
+                <SelectTrigger className={selectBorder("roof")}>
                   <SelectValue placeholder="-- Select Roof --" />
                 </SelectTrigger>
                 <SelectContent className="bg-white rounded-2xl border z-50">
@@ -66,7 +88,7 @@ const Part2 = () => {
               <Select value={walls} onValueChange={(value) => {
                     setWalls(value);
                 }}>
-                <SelectTrigger className="rounded-full font-medium px-6 bg-white/90 border w-full justify-center text-center">
+                <SelectTrigger className={selectBorder("walls")}>
                   <SelectValue placeholder="-- Select Walls --" />
                 </SelectTrigger>
                 <SelectContent className="bg-white rounded-2xl border z-50">
@@ -87,7 +109,7 @@ const Part2 = () => {
               <Select value={wr} onValueChange={(value) => {
                     setWR(value);
                 }}>
-                <SelectTrigger className="rounded-full font-medium px-6 bg-white/90 border w-full justify-center text-center">
+                <SelectTrigger className={selectBorder("wr")}>
                   <SelectValue placeholder="-- Select Window + Roof --" />
                 </SelectTrigger>
                 <SelectContent className="bg-white rounded-2xl border z-50">
@@ -108,7 +130,7 @@ const Part2 = () => {
               <Select value={rw} onValueChange={(value) => {
                     setRW(value);
                 }}>
-                <SelectTrigger className="rounded-full font-medium px-6 bg-white/90 border w-full justify-center text-center">
+                <SelectTrigger className={selectBorder("rw")}>
                   <SelectValue placeholder="-- Select Roof + Walls --" />
                 </SelectTrigger>
                 <SelectContent className="bg-white rounded-2xl border z-50">
@@ -129,7 +151,7 @@ const Part2 = () => {
               <Select value={ww} onValueChange={(value) => {
                     setWW(value);
                 }}>
-                <SelectTrigger className="rounded-full font-medium px-6 bg-white/90 border w-full justify-center text-center">
+                <SelectTrigger className={selectBorder("ww")}>
                   <SelectValue placeholder="-- Select Window + Walls --" />
                 </SelectTrigger>
                 <SelectContent className="bg-white rounded-2xl border z-50">
@@ -150,7 +172,7 @@ const Part2 = () => {
               <Select value={wwr} onValueChange={(value) => {
                     setWWR(value);
                 }}>
-                <SelectTrigger className="rounded-full font-medium px-6 bg-white/90 border w-full justify-center text-center">
+                <SelectTrigger className={selectBorder("wwr")}>
                   <SelectValue placeholder="-- Select Window + Walls + Roof --" />
                 </SelectTrigger>
                 <SelectContent className="bg-white rounded-2xl border z-50">
@@ -162,7 +184,12 @@ const Part2 = () => {
               </Select>
             </div>
           </div>
+          <div className={`flex justify-between items-center mt-4 }`}>
+            <button onClick={()=>setPart("part1")} className='bg-white/75 hover:bg-white px-8 py-1 rounded-full border'>Back</button>
+            <button onClick={handleNext}  className ='bg-white/75 hover:bg-white px-8 py-1 rounded-full border'>Next</button>
+          </div>
         </div>
+
       </div>
     </div>
    </div>

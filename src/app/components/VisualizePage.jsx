@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { ArrowRight } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../UI/select";
 
-const VisualizePage = () => {
+const VisualizePage = ({setCurrentPage}) => {
   const [windows, setWindows] = useState("");
   const [roof, setRoof] = useState("");
   const [walls, setWalls] = useState("");
@@ -11,7 +11,7 @@ const VisualizePage = () => {
     <div className="z-10">
       <div className="max-w-6xl mx-auto">
         <div className="bg-white/45 rounded-b-2xl pt-6 pb-5">
-          <div className="space-y-4 mx-12 relative">
+          <div className="space-y-2 mx-12 relative">
               {/* windows */}
             <div className="flex items-center gap-4">
               <div className="bg-white/70 rounded-full pl-6 pr-[139px] py-2  w-[30%]">
@@ -85,7 +85,9 @@ const VisualizePage = () => {
             </div>
             {/* disclaimer */}
             <p> <span className='font-medium'>Disclaimer:</span> All images used in this description are AI-generated using Canva's image generation tool. These visuals are intended solely for conceptual representation and illustrative purposes. They do not depict actual retrofit products, materials, or real-world outcomes.</p>
-            <div className='absolute bottom-40 right-1/3 rotate-150' >
+            <div className={`flex justify-between items-center mt-4 }`}>
+              <button onClick={()=>setCurrentPage("retrofit")} className='bg-white/75 hover:bg-white px-8 py-1 rounded-full border'>Back</button>
+              <button onClick={()=>setCurrentPage("feedback")}  className ='bg-white/75 hover:bg-white px-8 py-1 rounded-full border'>Next</button>
             </div>
           </div>
         </div>

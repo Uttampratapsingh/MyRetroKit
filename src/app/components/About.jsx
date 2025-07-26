@@ -1,6 +1,6 @@
 import React from 'react'
 
-const About = () => {
+const About = ({setCurrentPage}) => {
   return (
     <div className="z-10">
       <div className="max-w-6xl mx-auto">
@@ -15,6 +15,9 @@ const About = () => {
                 <img src="/house-ground-plus-two.jpg" alt="Dr. Priyanka Dey, Assistant Professor"  />
                 <p className='mt-3'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa odio quaerat cumque fugiat, tenetur nesciunt iste. Vero, eius facilis ipsum enim cum similique magni beatae, reprehenderit aut omnis earum sunt.</p>
               </div>
+            </div>
+            <div className={`flex justify-end items-center mt-2`}>
+                <button onClick={()=>setCurrentPage("home")} className='bg-white/75 hover:bg-white px-8 py-1 rounded-full border '>Go to Home</button>
             </div>
           </div>
         </div>
