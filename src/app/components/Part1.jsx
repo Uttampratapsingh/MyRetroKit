@@ -6,7 +6,11 @@ const Part1 = ({ setPart, setCurrentPage,setFormData,formData }) => {
   const { builtUpArea, areaUnit, numberOfStoreys, envelopeComponent} = formData;
 
   const [errors, setErrors] = useState({});
-  
+
+  useEffect(() => {
+    console.log("🧪 Area Unit Selected:", areaUnit);
+  }, [areaUnit]);
+
   const handleNext = () => {
     const newErrors = {};
     if (!builtUpArea) newErrors.builtUpArea = true;

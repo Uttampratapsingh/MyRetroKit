@@ -20,7 +20,9 @@ const Part2 = ({setCurrentPage,setPart,formData,setFormData}) => {
 
       if (Object.keys(newErrors).length === 0) {
         const userId = Math.random().toString(36).substring(2, 10);
+        console.log("🔍 Form Data:", formData);
         const fullData = { ...formData, userId };
+        console.log("📦 Full Payload Sent to Sheet:", fullData);
 
 
         try {
