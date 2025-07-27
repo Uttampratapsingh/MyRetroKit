@@ -8,7 +8,6 @@ import FeedbackPage from "./FeedbackPage";
 import About from "./About";
 
 const UserGuidePage = ({ onBack, setCurrentPage,currentPage }) => {
-  
   return (
     <>
       {/* Content */}

@@ -1,16 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Input } from "../UI/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../UI/select";
 
-const Part1 = ({ setPart, setCurrentPage }) => {
-  const [city, setCity] = useState("Bhubaneswar");
-  const [builtUpArea, setBuiltUpArea] = useState("");
-  const [areaUnit, setAreaUnit] = useState("");
-  const [numberOfStoreys, setNumberOfStoreys] = useState("");
-  const [envelopeComponent, setEnvelopeComponent] = useState("");
+const Part1 = ({ setPart, setCurrentPage,setFormData,formData }) => {
+  const { builtUpArea, areaUnit, numberOfStoreys, envelopeComponent} = formData;
 
   const [errors, setErrors] = useState({});
-
+  
   const handleNext = () => {
     const newErrors = {};
     if (!builtUpArea) newErrors.builtUpArea = true;
@@ -37,7 +33,7 @@ const Part1 = ({ setPart, setCurrentPage }) => {
               </div>
               <div className="flex-1">
                 <div className="bg-white/90 rounded-full px-6 py-2 max-w-sm text-center border">
-                  <span className="">{city}</span>
+                  <span className="">{formData.city}</span>
                 </div>
               </div>
             </div>
@@ -49,12 +45,17 @@ const Part1 = ({ setPart, setCurrentPage }) => {
               </div>
               <div className="flex-1 flex gap-2">
                 <Input
+                  type="number"
                   placeholder="-- Enter numeric value--"
                   value={builtUpArea}
-                  onChange={(e) => setBuiltUpArea(e.target.value)}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, builtUpArea: e.target.value }))
+                  }
                   className={`bg-white/90 rounded-full px-12 py-2 max-w-sm text-center border text-6xl placeholder-black font-medium ${errors.builtUpArea ? 'border-red-500' : ''}`}
                 />
-                <Select value={areaUnit} onValueChange={setAreaUnit}>
+                <Select value={areaUnit} onValueChange={(value) =>
+                    setFormData((prev) => ({ ...prev, areaUnit: value }))
+                }>
                   <SelectTrigger className={`bg-white/90 rounded-full py-2 font-medium border ${errors.areaUnit ? 'border-red-500' : ''}`}>
                     <SelectValue placeholder="-- Select unit --" />
                   </SelectTrigger>
@@ -72,7 +73,9 @@ const Part1 = ({ setPart, setCurrentPage }) => {
                 <span className="font-medium">Number of Storeys:</span>
               </div>
               <div className="flex-1">
-                <Select value={numberOfStoreys} onValueChange={setNumberOfStoreys}>
+                <Select value={numberOfStoreys} onValueChange={(value) =>
+                  setFormData((prev) => ({ ...prev, numberOfStoreys: value }))
+                }>
                   <SelectTrigger className={`rounded-full font-medium px-6 bg-white/90 border w-full justify-center text-center ${errors.numberOfStoreys ? 'border-red-500' : ''}`}>
                     <SelectValue placeholder="-- Number of floors --" />
                   </SelectTrigger>
@@ -91,7 +94,9 @@ const Part1 = ({ setPart, setCurrentPage }) => {
                 <span className="font-medium">Building envelope component:</span>
               </div>
               <div className="flex-1">
-                <Select value={envelopeComponent} onValueChange={setEnvelopeComponent}>
+                <Select value={envelopeComponent} onValueChange={(value) =>
+                  setFormData((prev) => ({ ...prev, envelopeComponent: value }))
+                }>
                   <SelectTrigger className={`rounded-full font-medium px-6 bg-white/90 border w-full justify-center text-center ${errors.envelopeComponent ? 'border-red-500' : ''}`}>
                     <SelectValue placeholder="-- Select envelope component --" />
                   </SelectTrigger>
